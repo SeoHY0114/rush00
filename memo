@@ -1,0 +1,70 @@
+rush00
+
+ft_putchar.c
+----------------
+#include <unistd.h>					//헤더 파일을 호출한다. <unistd.h> 유닉스 운영 체제의 기본 기능을 사용 (파이썬의 import와 같은 용도)
+
+void	ft_putchar(char c)				//값을 반환하지 않는 함수 void를 ft_putchar 함수 이름에 문자형 c 매개변수로 만든다.
+{
+	write (1, &c, 1);						//함수가 실행된다면 터미널에 c 매개변수를 출력하는데 1바이트이다.
+}
+----------------
+
+main.c
+----------------
+#include <unistd.h>					//ft_putchar.c 의 내용과 같다 (없이도 컴파일이 정상 된다.)
+
+void	rush(int x, int y);				//
+
+int	main(void)
+{
+	rush(123, 42);
+	return (0);
+}
+----------------
+
+rush00.c
+----------------
+#include <unistd.h>
+
+void	ft_putchar(char c);
+
+void	rush_print(int x, int y, int i, int j)
+{
+	if (i == 0 || i == (y - 1))
+	{
+		if (j == 0 || j == (x - 1))
+			ft_putchar('o');
+		else
+			ft_putchar('-');
+	}
+	else
+	{
+		if (j == 0 || j == (x - 1))
+			ft_putchar('|');
+		else
+			ft_putchar(' ');
+	}
+}
+
+void	rush(int x, int y)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < y)
+	{
+		while (j < x)
+		{
+			rush_print(x, y, i, j);
+			j++;
+		}
+		ft_putchar('\n');
+		i++;
+		j = 0;
+	}
+}
+
+----------------
