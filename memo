@@ -76,54 +76,54 @@ rush01.c						//rush01.c 파일
 ----------------
 #include <unistd.h>
 
-void	ft_putchar(char c);				//
+void	ft_putchar(char c);				//어떤 값도 반환하지않고 ft_putchar(char c); 함수를 실행(ft_puchar.c 로 모듈화된 파일의 내용을 실행한다)
 
-void	rush_print(int x, int y, int i, int j)
+void	rush_print(int x, int y, int i, int j)		//값을 반환하지않고 rush_print 함수를 실행한다. 매개변수는 첫째 정수 x 둘째 정수 y 셋째 정수 i 넷째 정수 j
 {
-	if (i == 0)
+	if (i == 0)						//만약 i 가 0이라면? (처음을 찾자 먼저 왔으니 너는 행)
 	{
-		if (j == 0)
-			ft_putchar('/');
-		else if (j == x - 1)
-			ft_putchar('\\');
-		else
-			ft_putchar('*');
+		if (j == 0)						//만약 j 가 0이라면? (열의 처음을 찾자)
+			ft_putchar('/');					// '/' 를 출력해라
+		else if (j == x - 1)					//아니고 만약 j 가 x(열)-1 과 같다면?? (열의 마지막 부분을 찾을건데 j를 0부터 시작 그래서 열 숫자보다 1을 작게)
+			ft_putchar('\\');					// '\' 를 출력해라 (역슬러시)
+		else							//둘 다 아니라면?? (처음도 아니고 마지막도 아니고 즉 중간 부분들)
+			ft_putchar('*');					// '*' 을 출력하라
 	}
-	else if (i == (y - 1))
+	else if (i == (y - 1))					//아니고 만약에 i 가 y(행)-1 과 같다면?? (열의 마지막 부분을 찾을건데 i를 0부터 시작 그래서 열 숫자보다 1을 작게 즉, 마지막 줄이라면?) 첫째 줄과 마지막 줄의 패턴이 다르기 때문에 구분 지었다.
 	{
-		if (j == 0)
-			ft_putchar('\\');
-		else if (j == x - 1)
-			ft_putchar('/');
-		else
-			ft_putchar('*');
+		if (j == 0)						//만약 j 가 0이라면? (열의 처음)
+			ft_putchar('\\');					// '\' 를 출력
+		else if (j == x - 1)					//아니고 만약 j 가 x-1 과 같다면?? (열의 마지막 부분을 찾자)
+			ft_putchar('/');					// '/' 를 출력
+		else							//다 아니라면?
+			ft_putchar('*');					// '*' 를 출력
 	}
-	else
+	else							//다 아니라면?(첫 행도 마지막 행도 아니라면??)
 	{
-		if (j == 0 || j == (x - 1))
-			ft_putchar('*');
-		else
-			ft_putchar(' ');
+		if (j == 0 || j == (x - 1))				//만약 j 가 0 또는 x-1 이라면? (처음과 마지막 열)
+			ft_putchar('*');					// '*'를 출력
+		else							//아니라면 (처음과 마지막 열을 제외한 열, 사이에 있는 열)
+			ft_putchar(' ');					// ' '를 출력(공백)
 	}
 }
 
-void	rush(int x, int y)
+void	rush(int x, int y)					//값을 반환하지 않는 rush 함수를 실행. 매개변수는 첫째 정수 x 둘째 정수 y
 {
-	int	i;
-	int	j;
+	int	i;							//정수형 i 변수 선언
+	int	j;							//정수형 j 변수 선언
 
-	i = 0;
-	j = 0;
-	while (i < y)
+	i = 0;								//i 변수에 0을 대입
+	j = 0;								//j 변수에 0을 대입
+	while (i < y)							//i가 y보다 작다면 반복(행을 나타낸다)
 	{
-		while (j < x)
+		while (j < x)							//j가 x보다 작다면 반복(열을 나타낸다)
 		{
-			rush_print(x, y, i, j);
-			j++;
+			rush_print(x, y, i, j);						//rush_print 함수를 x, y, i, j 매개변수를 대입하여 실행
+			j++;								//j 변수의 값을 1 증가 (열을 x 값 횟수 만큼 반복하기 위함)
 		}
-		ft_putchar('\n');
-		i++;
-		j = 0;
+		ft_putchar('\n');						//ft_putchar 함수의 매개변수에 문자 \n 을 주고 함수 실행(열 반복이 종료 되었으므로 줄바꿈)
+		i++;								//i 변수의 값을 1 증가 (열 반복이 종료 되어서 다음 행으로 넘어가기 위함)
+		j = 0;								//j 변수에 0을 대입 (열 반복이 종료 되므로 다시 처음 열로 돌아가기 위함)
 	}
 }
 ----------------
@@ -132,9 +132,9 @@ rush02.c
 ----------------
 #include <unistd.h>
 
-void	ft_putchar(char c);
+void	ft_putchar(char c);					//어떤 값도 반환하지않고 ft_putchar(char c); 함수를 실행(ft_puchar.c 로 모듈화된 파일의 내용을 실행한다)
 
-void	rush_print(int x, int y, int i, int j)
+void	rush_print(int x, int y, int i, int j)			//값을 반환하지않고 rush_print 함수를 실행한다. 매개변수는 첫째 정수 x 둘째 정수 y 셋째 정수 i 넷째 정수 j
 {
 	if (i == 0)
 	{
@@ -159,26 +159,25 @@ void	rush_print(int x, int y, int i, int j)
 	}
 }
 
-void	rush(int x, int y)
+void	rush(int x, int y)					//값을 반환하지 않는 rush 함수를 실행. 매개변수는 첫째 정수 x 둘째 정수 y
 {
-	int	i;
-	int	j;
+	int	i;							//정수형 i 변수 선언
+	int	j;							//정수형 j 변수 선언
 
-	i = 0;
-	j = 0;
-	while (i < y)
+	i = 0;								//i 변수에 0을 대입
+	j = 0;								//j 변수에 0을 대입
+	while (i < y)							//i가 y보다 작다면 반복(행을 나타낸다)
 	{
-		while (j < x)
+		while (j < x)							//j가 x보다 작다면 반복(열을 나타낸다)
 		{
-			rush_print(x, y, i, j);
-			j++;
+			rush_print(x, y, i, j);						//rush_print 함수를 x, y, i, j 매개변수를 대입하여 실행
+			j++;								//j 변수의 값을 1 증가 (열을 x 값 횟수 만큼 반복하기 위함)
 		}
-		ft_putchar('\n');
-		i++;
-		j = 0;
+		ft_putchar('\n');						//ft_putchar 함수의 매개변수에 문자 \n 을 주고 함수 실행(열 반복이 종료 되었으므로 줄바꿈)
+		i++;								//i 변수의 값을 1 증가 (열 반복이 종료 되어서 다음 행으로 넘어가기 위함)
+		j = 0;								//j 변수에 0을 대입 (열 반복이 종료 되므로 다시 처음 열로 돌아가기 위함)
 	}
 }
-
 ----------------
 
 rush03.c
@@ -207,26 +206,25 @@ void	rush_print(int x, int y, int i, int j)
 	}
 }
 
-void	rush(int x, int y)
+void	rush(int x, int y)					//값을 반환하지 않는 rush 함수를 실행. 매개변수는 첫째 정수 x 둘째 정수 y
 {
-	int	i;
-	int	j;
+	int	i;							//정수형 i 변수 선언
+	int	j;							//정수형 j 변수 선언
 
-	i = 0;
-	j = 0;
-	while (i < y)
+	i = 0;								//i 변수에 0을 대입
+	j = 0;								//j 변수에 0을 대입
+	while (i < y)							//i가 y보다 작다면 반복(행을 나타낸다)
 	{
-		while (j < x)
+		while (j < x)							//j가 x보다 작다면 반복(열을 나타낸다)
 		{
-			rush_print(x, y, i, j);
-			j++;
+			rush_print(x, y, i, j);						//rush_print 함수를 x, y, i, j 매개변수를 대입하여 실행
+			j++;								//j 변수의 값을 1 증가 (열을 x 값 횟수 만큼 반복하기 위함)
 		}
-		ft_putchar('\n');
-		i++;
-		j = 0;
+		ft_putchar('\n');						//ft_putchar 함수의 매개변수에 문자 \n 을 주고 함수 실행(열 반복이 종료 되었으므로 줄바꿈)
+		i++;								//i 변수의 값을 1 증가 (열 반복이 종료 되어서 다음 행으로 넘어가기 위함)
+		j = 0;								//j 변수에 0을 대입 (열 반복이 종료 되므로 다시 처음 열로 돌아가기 위함)
 	}
 }
-
 ----------------
 
 rush04.c
@@ -263,25 +261,23 @@ void	rush_print(int x, int y, int i, int j)
 			ft_putchar(' ');
 	}
 }
-
-void	rush(int x, int y)
+void	rush(int x, int y)					//값을 반환하지 않는 rush 함수를 실행. 매개변수는 첫째 정수 x 둘째 정수 y
 {
-	int	i;
-	int	j;
+	int	i;							//정수형 i 변수 선언
+	int	j;							//정수형 j 변수 선언
 
-	i = 0;
-	j = 0;
-	while (i < y)
+	i = 0;								//i 변수에 0을 대입
+	j = 0;								//j 변수에 0을 대입
+	while (i < y)							//i가 y보다 작다면 반복(행을 나타낸다)
 	{
-		while (j < x)
+		while (j < x)							//j가 x보다 작다면 반복(열을 나타낸다)
 		{
-			rush_print(x, y, i, j);
-			j++;
+			rush_print(x, y, i, j);						//rush_print 함수를 x, y, i, j 매개변수를 대입하여 실행
+			j++;								//j 변수의 값을 1 증가 (열을 x 값 횟수 만큼 반복하기 위함)
 		}
-		ft_putchar('\n');
-		i++;
-		j = 0;
+		ft_putchar('\n');						//ft_putchar 함수의 매개변수에 문자 \n 을 주고 함수 실행(열 반복이 종료 되었으므로 줄바꿈)
+		i++;								//i 변수의 값을 1 증가 (열 반복이 종료 되어서 다음 행으로 넘어가기 위함)
+		j = 0;								//j 변수에 0을 대입 (열 반복이 종료 되므로 다시 처음 열로 돌아가기 위함)
 	}
 }
-
 ----------------
